@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astralyx — Digital Human Resources Agency </title>
+
+    <link rel="stylesheet" href="source/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="source/img/favicon.ico" type="image/x-icon">
+
+    <meta name="theme-color" content="#284AFB" />
+</head>
+
+<body>
+    <div class="cookie-wrapper">
+        <h1>Cookies Policy for Astralyx.io</h1>
+        <p><strong>Effective Date:</strong> [Insert Date]</p>
+        <p>This Cookies Policy explains how Astralyx LTD ("we", "us", "our") uses cookies and similar technologies on
+            our website, astralyx.io (the "Site"). By using the Site, you consent to the use of cookies in accordance
+            with this policy.</p>
+
+        <h2>1. What are Cookies?</h2>
+        <p>Cookies are small text files that are placed on your computer or mobile device when you visit a website. They
+            are widely used to make websites work more efficiently, as well as to provide information to the website
+            owners.</p>
+
+        <h2>2. How We Use Cookies</h2>
+        <p>We use cookies for several reasons, including to:</p>
+        <ul>
+            <li>Ensure the Site operates correctly.</li>
+            <li>Enhance the functionality of the Site.</li>
+            <li>Analyze the performance of the Site.</li>
+            <li>Provide personalized marketing content.</li>
+        </ul>
+
+        <h2>3. Types of Cookies We Use</h2>
+        <ul>
+            <li><strong>Strictly Necessary Cookies:</strong> These cookies are essential for the operation of the Site.
+                They enable you to navigate the Site and use its features, such as accessing secure areas of the Site.
+            </li>
+            <li><strong>Performance Cookies:</strong> These cookies collect information about how visitors use the Site,
+                for instance, which pages visitors go to most often. We use this information to improve how the Site
+                works.</li>
+            <li><strong>Functionality Cookies:</strong> These cookies allow the Site to remember choices you make (such
+                as your username, language, or the region you are in) and provide enhanced, more personalized features.
+            </li>
+            <li><strong>Marketing Cookies:</strong> These cookies are used to deliver adverts more relevant to you and
+                your interests. They are also used to limit the number of times you see an advertisement and help
+                measure the effectiveness of the advertising campaign.</li>
+        </ul>
+
+        <h2>4. Third-Party Cookies</h2>
+        <p>We may also use third-party cookies from our analytics and marketing service providers, such as Google
+            Analytics and Facebook Ads, to help us understand how our Site is used and to deliver personalized
+            advertising.</p>
+
+        <h2>5. Managing Cookies</h2>
+        <p>Most web browsers allow some control of most cookies through the browser settings. You can set your browser
+            to refuse cookies or to alert you when cookies are being sent. However, if you disable cookies, some
+            features of the Site may not function properly.</p>
+
+        <h2>6. Changes to This Cookies Policy</h2>
+        <p>We may update our Cookies Policy from time to time. Any changes will be posted on this page with an updated
+            revision date.</p>
+
+        <h2>7. Contact Us</h2>
+        <p>If you have any questions about our use of cookies, please contact us at:</p>
+        <address>
+            Astralyx LTD<br>
+            20-22 Wenlock Road<br>
+            London, England, N1 7GU<br>
+            Email: <a href="mailto:contact@astralyx.io">contact@astralyx.io</a>
+        </address>
+
+        <p>By continuing to use our Site, you agree to our use of cookies as described in this Cookies Policy.</p>
+    </div>
+
+    <script>
+        const callback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scroll-effect-active');
+                }
+            });
+        };
+        const observer = new IntersectionObserver(callback, {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        });
+        document.querySelectorAll('.scroll-effect').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+
+    <script>
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + '+';
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const counters = document.querySelectorAll('.counter');
+        const animationDuration = 2000; // Продолжительность анимации в миллисекундах
+
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                animateValue(counter, 0, target, animationDuration);
+            };
+
+            // Проверка видимости счетчика в окне просмотра
+            const isInViewport = (element) => {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+                );
+            };
+
+            // Добавляем слушатель для скролла
+            window.addEventListener('scroll', () => {
+                if (isInViewport(counter) && !counter.classList.contains('animated')) {
+                    counter.classList.add('animated');
+                    updateCount();
+                }
+            });
+        });
+    </script>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // Get the video element
+        var video = document.getElementById("modalVideo");
+
+        // When the user clicks the button, open the modal and play the video
+        btn.onclick = function () {
+            modal.style.display = "flex";
+            video.play();
+        }
+
+        // When the user clicks on <span> (x), close the modal and pause the video
+        span.onclick = function () {
+            modal.style.display = "none";
+            video.pause();
+        }
+
+        // When the user clicks anywhere outside of the modal, close it and pause the video
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                video.pause();
+            }
+        }
+    </script>
+    <script src="source/js/calculate-box.js"></script>
+</body>
+
+</html>
