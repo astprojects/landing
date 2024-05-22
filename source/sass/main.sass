@@ -14,6 +14,13 @@ img
 a
     text-decoration: none
 
+img
+    &.lazy
+        opacity: 0
+        transition: opacity 0.3s
+    &.loaded
+        opacity: 1
+
 .wrapper-page
     overflow: hidden
     position: relative
